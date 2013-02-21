@@ -326,45 +326,45 @@ class Team
 
 end
 
-# League.team_name_link_array.each do |name, url|
-#   team = Team.new(name, url)
-# end
+League.team_name_link_array.each do |name, url|
+  team = Team.new(name, url)
+end
 
-# Team.name_teams.each do |team, url|
-#   begin 
-#     document = Nokogiri::HTML(open(url))
-#   rescue
-#     raise url.inspect
-#   end
+Team.name_teams.each do |team, url|
+  begin 
+    document = Nokogiri::HTML(open(url))
+  rescue
+    raise url.inspect
+  end
 
-#   event_name = 'tbody a:first span[itemprop = "name performers"]'
-#   event_event_date = 'div .eventDatePadding'
-#   event_venue_place = 'div[itemprop = "location"] span[itemprop = "name"]'
-#   event_venue_city = 'div[itemprop = "address"] span[itemprop = "addressLocality"]'
-#   event_venue_state = 'div[itemprop = "address"] span[itemprop = "addressRegion"]'
-#   event_min_price = 'td[itemprop = "offers"] span[itemprop = "lowPrice"]'
-#   event_tix = 'td[itemprop = "offers"] span[itemprop = "offerCount"]'
-#   # event_url = ".eventName a"
-#   i = 0
+  event_name = 'tbody a:first span[itemprop = "name performers"]'
+  event_event_date = 'div .eventDatePadding'
+  event_venue_place = 'div[itemprop = "location"] span[itemprop = "name"]'
+  event_venue_city = 'div[itemprop = "address"] span[itemprop = "addressLocality"]'
+  event_venue_state = 'div[itemprop = "address"] span[itemprop = "addressRegion"]'
+  event_min_price = 'td[itemprop = "offers"] span[itemprop = "lowPrice"]'
+  event_tix = 'td[itemprop = "offers"] span[itemprop = "offerCount"]'
+  # event_url = ".eventName a"
+  i = 0
 
-#   begin
-#     document.css(event_name).each do |title|
-#       event = Event.new(
-#         title.text.split(" at ")[0], 
-#         title.text.split(" at ")[1],
-#         document.css(event_event_date)[i].text,
-#         document.css(event_venue_place)[i].text,
-#         document.css(event_venue_city)[i].text,
-#         document.css(event_venue_state)[i].text,
-#         document.css(event_min_price)[i].text,
-#         document.css(event_tix)[i].text,
-#         # document.css(event_url)[i].text
-#         )
-#       i += 1
-#       event.save
-#     end
-#   rescue
-#   end
+  begin
+    document.css(event_name).each do |title|
+      event = Event.new(
+        title.text.split(" at ")[0], 
+        title.text.split(" at ")[1],
+        document.css(event_event_date)[i].text,
+        document.css(event_venue_place)[i].text,
+        document.css(event_venue_city)[i].text,
+        document.css(event_venue_state)[i].text,
+        document.css(event_min_price)[i].text,
+        document.css(event_tix)[i].text,
+        # document.css(event_url)[i].text
+        )
+      i += 1
+      event.save
+    end
+  rescue
+  end
 
 # end
 
